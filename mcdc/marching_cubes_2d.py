@@ -2,9 +2,9 @@
 
 import math
 
-from common import Edge, adapt
-from settings import XMIN, XMAX, YMIN, YMAX
-from utils_2d import V2, make_svg
+from .common import Edge, adapt
+from .settings import XMIN, XMAX, YMIN, YMAX
+from .utils_2d import V2, make_svg
 
 
 def marching_cubes_2d_single_cell(f, x, y):

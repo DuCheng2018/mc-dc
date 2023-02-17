@@ -1,9 +1,9 @@
 import numpy
 import numpy.linalg
 
-from utils_2d import V2
-from utils_3d import V3
-import settings
+from .utils_2d import V2
+from .utils_3d import V3
+from . import settings
 
 
 class QEF:

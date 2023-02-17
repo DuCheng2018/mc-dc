@@ -3,10 +3,10 @@
 import math
 
 
-from common import Edge, adapt
-from settings import ADAPTIVE, XMIN, XMAX, YMIN, YMAX
-from utils_2d import V2, make_svg
-from qef import solve_qef_2d
+from .common import Edge, adapt
+from .settings import ADAPTIVE, XMIN, XMAX, YMIN, YMAX
+from .utils_2d import V2, make_svg
+from .qef import solve_qef_2d
 
 
 def dual_contour_2d_find_best_vertex(f, f_normal, x, y):

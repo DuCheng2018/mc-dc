@@ -1,6 +1,6 @@
 """Contains utilities common to all meshing methods"""
 
-import settings
+from . import settings
 
 class Edge:
     def __init__(self, v1, v2):

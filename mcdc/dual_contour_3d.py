@@ -1,11 +1,11 @@
 """Provides a function for performing 3D Dual Countouring"""
 
-from common import adapt
-from settings import ADAPTIVE, XMIN, XMAX, YMIN, YMAX, ZMIN, ZMAX
+from .common import adapt
+from .settings import ADAPTIVE, XMIN, XMAX, YMIN, YMAX, ZMIN, ZMAX
 import numpy as np
 import math
-from utils_3d import V3, Quad, Mesh, make_obj, Tri
-from qef import solve_qef_3d
+from .utils_3d import V3, Quad, Mesh, make_obj, Tri
+from .qef import solve_qef_3d
 
 
 def dual_contour_3d_find_best_vertex(f, f_normal, x, y, z):

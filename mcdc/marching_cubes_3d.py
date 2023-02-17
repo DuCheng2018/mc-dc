@@ -1,9 +1,9 @@
 """Provides a function for performing 3D Marching Cubes"""
 
-from common import adapt
-from settings import XMIN, XMAX, YMIN, YMAX, ZMIN, ZMAX
+from .common import adapt
+from .settings import XMIN, XMAX, YMIN, YMAX, ZMIN, ZMAX
 import math
-from utils_3d import V3, Tri, Mesh, make_obj
+from .utils_3d import V3, Tri, Mesh, make_obj
 
 # My convention for vertices is:
 VERTICES = [

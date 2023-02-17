@@ -1,6 +1,6 @@
 """Contains utilities common to 2d meshing methods"""
 
-from settings import XMIN, XMAX, YMIN, YMAX
+from .settings import XMIN, XMAX, YMIN, YMAX
 import math
 
 class V2:
