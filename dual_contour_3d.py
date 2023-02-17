@@ -4,7 +4,7 @@ from common import adapt
 from settings import ADAPTIVE, XMIN, XMAX, YMIN, YMAX, ZMIN, ZMAX
 import numpy as np
 import math
-from utils_3d import V3, Quad, Mesh, make_obj
+from utils_3d import V3, Quad, Mesh, make_obj, Tri
 from qef import solve_qef_3d
 
 
@@ -78,8 +78,18 @@ def dual_contour_3d(f, f_normal, xmin=XMIN, xmax=XMAX, ymin=YMIN, ymax=YMAX, zmi
                     solid1 = f(x, y, z + 0) > 0
                     solid2 = f(x, y, z + 1) > 0
                     if solid1 != solid2:
-                        faces.append(Quad(
+                        #  faces.append(Quad(
+                            #  vert_indices[(x - 1, y - 1, z)],
+                            #  vert_indices[(x - 0, y - 1, z)],
+                            #  vert_indices[(x - 0, y - 0, z)],
+                            #  vert_indices[(x - 1, y - 0, z)],
+                        #  ).swap(solid2))
+                        faces.append(Tri(
                             vert_indices[(x - 1, y - 1, z)],
+                            vert_indices[(x - 0, y - 1, z)],
+                            vert_indices[(x - 1, y - 0, z)],
+                        ).swap(solid2))
+                        faces.append(Tri(
                             vert_indices[(x - 0, y - 1, z)],
                             vert_indices[(x - 0, y - 0, z)],
                             vert_indices[(x - 1, y - 0, z)],
@@ -88,8 +98,18 @@ def dual_contour_3d(f, f_normal, xmin=XMIN, xmax=XMAX, ymin=YMIN, ymax=YMAX, zmi
                     solid1 = f(x, y + 0, z) > 0
                     solid2 = f(x, y + 1, z) > 0
                     if solid1 != solid2:
-                        faces.append(Quad(
+                        #  faces.append(Quad(
+                            #  vert_indices[(x - 1, y, z - 1)],
+                            #  vert_indices[(x - 0, y, z - 1)],
+                            #  vert_indices[(x - 0, y, z - 0)],
+                            #  vert_indices[(x - 1, y, z - 0)],
+                        #  ).swap(solid1))
+                        faces.append(Tri(
                             vert_indices[(x - 1, y, z - 1)],
+                            vert_indices[(x - 0, y, z - 1)],
+                            vert_indices[(x - 1, y, z - 0)],
+                        ).swap(solid1))
+                        faces.append(Tri(
                             vert_indices[(x - 0, y, z - 1)],
                             vert_indices[(x - 0, y, z - 0)],
                             vert_indices[(x - 1, y, z - 0)],
@@ -98,8 +118,18 @@ def dual_contour_3d(f, f_normal, xmin=XMIN, xmax=XMAX, ymin=YMIN, ymax=YMAX, zmi
                     solid1 = f(x + 0, y, z) > 0
                     solid2 = f(x + 1, y, z) > 0
                     if solid1 != solid2:
-                        faces.append(Quad(
+                        #  faces.append(Quad(
+                            #  vert_indices[(x, y - 1, z - 1)],
+                            #  vert_indices[(x, y - 0, z - 1)],
+                            #  vert_indices[(x, y - 0, z - 0)],
+                            #  vert_indices[(x, y - 1, z - 0)],
+                        #  ).swap(solid2))
+                        faces.append(Tri(
                             vert_indices[(x, y - 1, z - 1)],
+                            vert_indices[(x, y - 0, z - 1)],
+                            vert_indices[(x, y - 1, z - 0)],
+                        ).swap(solid2))
+                        faces.append(Tri(
                             vert_indices[(x, y - 0, z - 1)],
                             vert_indices[(x, y - 0, z - 0)],
                             vert_indices[(x, y - 1, z - 0)],
@@ -136,6 +166,9 @@ def normal_from_function(f, d=0.01):
 __all__ = ["dual_contour_3d"]
 
 if __name__ == "__main__":
-    mesh = dual_contour_3d(intersect_function, normal_from_function(intersect_function))
-    with open("output.obj", "w") as f:
+    #  mesh = dual_contour_3d(intersect_function, normal_from_function(intersect_function))
+    mesh = dual_contour_3d(circle_function, normal_from_function(circle_function))
+    print(len(mesh.verts))
+    print(len(mesh.faces))
+    with open("output_2.obj", "w") as f:
         make_obj(f, mesh)

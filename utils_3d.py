@@ -23,6 +23,12 @@ class Tri:
     def map(self, f):
         return Tri(f(self.v1), f(self.v2), f(self.v3))
 
+    def swap(self, swap=True):
+        if swap:
+            return Tri(self.v3, self.v2, self.v1)
+        else:
+            return Tri(self.v1, self.v2, self.v3)
+
 
 class Quad:
     """A 3d quadrilateral (polygon with 4 vertices)"""
